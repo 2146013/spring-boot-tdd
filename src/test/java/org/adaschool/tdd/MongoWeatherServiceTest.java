@@ -33,7 +33,7 @@ class MongoWeatherServiceTest
     @BeforeAll()
     public void setup()
     {
-        weatherService = new MongoWeatherService( repository );
+        weatherService = new MongoWeatherService( repository);
     }
 
     @Test
