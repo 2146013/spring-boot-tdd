@@ -3,6 +3,7 @@ package org.adaschool.tdd.controller.weather;
 import org.adaschool.tdd.controller.weather.dto.NearByWeatherReportsQueryDto;
 import org.adaschool.tdd.controller.weather.dto.WeatherReportDto;
 import org.adaschool.tdd.repository.document.WeatherReport;
+import org.adaschool.tdd.service.MongoWeatherService;
 import org.adaschool.tdd.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +19,9 @@ import java.util.List;
 @RequestMapping( "/v1/weather" )
 public class WeatherReportController
 {
-    private final WeatherService weatherService;
+    private final MongoWeatherService weatherService;
 
-    public WeatherReportController( @Autowired WeatherService weatherService )
+    public WeatherReportController( @Autowired MongoWeatherService weatherService )
     {
         this.weatherService = weatherService;
     }

@@ -34,7 +34,6 @@ public class WeatherReportControllerTest {
 
     @Test
     public void weatherControllerReport()
-            throws Exception
     {
         double lat = 4.7110;
         double lng = 74.0721;
