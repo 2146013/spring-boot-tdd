@@ -14,7 +14,9 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -33,7 +35,21 @@ class MongoWeatherServiceTest
     @BeforeAll()
     public void setup()
     {
-        weatherService = new MongoWeatherService( repository );
+        weatherService = new MongoWeatherService( repository);
+    }
+
+    @Test
+    void fainByreportName(){
+        String weatherReportname = "tester";
+        double lat = 4.7110;
+        double lng = 74.0721;
+        List<WeatherReport> lista=new ArrayList<>();
+        GeoLocation location = new GeoLocation( lat, lng );
+        WeatherReport weatherReport = new WeatherReport( location, 35f, 22f, "tester", new Date() );
+        lista.add(weatherReport);
+        when( repository.findByReporter( weatherReportname ) ).thenReturn((lista));//Precondicion
+        List<WeatherReport> foundWeatherReport = weatherService.findWeatherReportsByName( weatherReportname );
+        Assertions.assertEquals( lista, foundWeatherReport );
     }
 
     @Test
